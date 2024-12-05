@@ -141,9 +141,7 @@ class MorphTo extends BelongsTo
         return str($this->types[$item->{$this->getMorphType()}] ?? $item->{$this->getMorphType()})
             ->append('(')
             ->append(
-                $item
-                    ->{$this->getRelationName()}
-                    ->{$this->getSearchColumn($item->{$this->getRelationName()}::class)}
+                data_get($item->{$this->getRelationName()}, $this->getSearchColumn($item->{$this->getRelationName()}::class))
             )
             ->append(')')
             ->value();
